@@ -1,0 +1,9 @@
+OBJ_PRE = [[], 0], ARG_PRE = [],OBJ_POST = [[], 0],ARG_POST = [], RETVAL = ["Exception"]
+OBJ_PRE = [[], 1], ARG_PRE = [],OBJ_POST = [[], 1],ARG_POST = [], RETVAL = ["Exception"]
+OBJ_PRE = [[], 4], ARG_PRE = [],OBJ_POST = [[], 4],ARG_POST = [], RETVAL = ["Exception"]
+OBJ_PRE = [[18150], 1], ARG_PRE = [],OBJ_POST = [[], 1],ARG_POST = [], RETVAL = []
+OBJ_PRE = [[20586], 4], ARG_PRE = [],OBJ_POST = [[], 4],ARG_POST = [], RETVAL = []
+OBJ_PRE = [[16809, 21352], 4], ARG_PRE = [],OBJ_POST = [[16809], 4],ARG_POST = [], RETVAL = []
+OBJ_PRE = [[27583, 17309, 10131], 4], ARG_PRE = [],OBJ_POST = [[27583, 17309], 4],ARG_POST = [], RETVAL = []
+OBJ_PRE = [[14218, 3807, 287, 18952], 4], ARG_PRE = [],OBJ_POST = [[14218, 3807, 287], 4],ARG_POST = [], RETVAL = []
+

@@ -1,0 +1,9 @@
+OBJ_PRE = [[], 0], ARG_PRE = [],OBJ_POST = [[], 0],ARG_POST = [], RETVAL = [com.parctechnologies.eclipse.Atom with [functor=true]]
+OBJ_PRE = [[], 1], ARG_PRE = [],OBJ_POST = [[], 1],ARG_POST = [], RETVAL = [com.parctechnologies.eclipse.Atom with [functor=true]]
+OBJ_PRE = [[], 4], ARG_PRE = [],OBJ_POST = [[], 4],ARG_POST = [], RETVAL = [com.parctechnologies.eclipse.Atom with [functor=true]]
+OBJ_PRE = [[5849], 1], ARG_PRE = [],OBJ_POST = [[5849], 1],ARG_POST = [], RETVAL = [com.parctechnologies.eclipse.Atom with [functor=false]]
+OBJ_PRE = [[26561], 4], ARG_PRE = [],OBJ_POST = [[26561], 4],ARG_POST = [], RETVAL = [com.parctechnologies.eclipse.Atom with [functor=false]]
+OBJ_PRE = [[27569, 5948], 4], ARG_PRE = [],OBJ_POST = [[27569, 5948], 4],ARG_POST = [], RETVAL = [com.parctechnologies.eclipse.Atom with [functor=false]]
+OBJ_PRE = [[6026, 14278, 10622], 4], ARG_PRE = [],OBJ_POST = [[6026, 14278, 10622], 4],ARG_POST = [], RETVAL = [com.parctechnologies.eclipse.Atom with [functor=false]]
+OBJ_PRE = [[11022, 1297, 9312, 5463], 4], ARG_PRE = [],OBJ_POST = [[11022, 1297, 9312, 5463], 4],ARG_POST = [], RETVAL = [com.parctechnologies.eclipse.Atom with [functor=false]]
+

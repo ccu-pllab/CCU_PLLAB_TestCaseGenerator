@@ -1,0 +1,9 @@
+OBJ_PRE = [[], 0], ARG_PRE = [],OBJ_POST = [[], 0],ARG_POST = [], RETVAL = [0]
+OBJ_PRE = [[], 1], ARG_PRE = [],OBJ_POST = [[], 1],ARG_POST = [], RETVAL = [0]
+OBJ_PRE = [[13930], 1], ARG_PRE = [],OBJ_POST = [[13930], 1],ARG_POST = [], RETVAL = [1]
+OBJ_PRE = [[], 4], ARG_PRE = [],OBJ_POST = [[], 4],ARG_POST = [], RETVAL = [0]
+OBJ_PRE = [[12676], 4], ARG_PRE = [],OBJ_POST = [[12676], 4],ARG_POST = [], RETVAL = [1]
+OBJ_PRE = [[6948, 4291], 4], ARG_PRE = [],OBJ_POST = [[6948, 4291], 4],ARG_POST = [], RETVAL = [2]
+OBJ_PRE = [[18694, 26379, 23135], 4], ARG_PRE = [],OBJ_POST = [[18694, 26379, 23135], 4],ARG_POST = [], RETVAL = [3]
+OBJ_PRE = [[629, 5297, 2157, 9748], 4], ARG_PRE = [],OBJ_POST = [[629, 5297, 2157, 9748], 4],ARG_POST = [], RETVAL = [4]
+
