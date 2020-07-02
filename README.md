@@ -15,7 +15,7 @@ Press Enter and wait for eclipse to finish downloading. Select all to download.(
 Press Enter and wait for eclipse to finish downloading. Select all to download.([Download Link](https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2019-12/))
 
   Step4.  Download and install TcgenSetup.exe, Select the folder where eclipse is installed.([Download Link](https://drive.google.com/open?id=1YQCuyN-neuGVMSnI0tkjJfIANZYZp-pr))
-![](/img/20200702/TcgenPluginSetUp)
+![](/img/20200702/TcgenPluginSetUp.png)
 
 ### II、How to use Tcgen Plugin
 
@@ -25,7 +25,7 @@ Press Enter and wait for eclipse to finish downloading. Select all to download.(
   </li>
 </ol>  
 
-![](/img/20200702/CBSDD_NewProj.png)
+![](/img/20200702/CBSDD_NewProj.PNG)
 
 <ol start = "2">  
   <li>
@@ -63,7 +63,7 @@ This is a specification document describing the BoundedQueue class, which contai
   </li>
 </ol>  
 
-![](/img/20200702/CBSDD_SPEC.png)
+![](/img/20200702/CBSDD_SPEC.PNG)
 
 <ol start = "3">  
   <li>
@@ -71,7 +71,7 @@ This is a specification document describing the BoundedQueue class, which contai
   </li>
 </ol>
 
-![](/img/20200702/MENU.png)
+![](/img/20200702/MENU.PNG)
 
 <ol start = "4">  
   <li>
@@ -80,7 +80,7 @@ This is a specification document describing the BoundedQueue class, which contai
   </li>
 </ol>
 
-![](/img/20200702/output.png)
+![](/img/20200702/output.PNG)
 
 ### About us
 
