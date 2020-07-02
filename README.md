@@ -71,6 +71,7 @@ This is a specification document describing the Gradeconverter class, which cont
   </li>
 </ol>
 
+<img src="/img/20200702/MENU.PNG" style="vertical-align:bottom">
 ![](/img/20200702/MENU.PNG)
 
 <ol start = "4">  
