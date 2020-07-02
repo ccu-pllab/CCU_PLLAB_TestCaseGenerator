@@ -15,17 +15,17 @@ Press Enter and wait for eclipse to finish downloading. Select all to download.(
 Press Enter and wait for eclipse to finish downloading. Select all to download.([Download Link](https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2019-12/))
 
   Step4.  Download and install TcgenSetup.exe, Select the folder where eclipse is installed.([Download Link](https://drive.google.com/open?id=1YQCuyN-neuGVMSnI0tkjJfIANZYZp-pr))
-
+![Test](/img/20200702/TcgenPluginSetUp)
 
 ### II、How to use Tcgen Plugin
 
 <ol start = "1">  
   <li>
-  <font color="#dd0000">After using eclipsec.exe to open eclipse</font>, From the eclipse navigation: File -> New -> Other... -> CCU_Pllab -> Tcgen project.  
+  <font color="#dd0000">After using eclipsec.exe to open eclipse</font>, From the eclipse navigation: File -> New -> Project... -> CCU_Pllab -> CBSDD project.  
   </li>
 </ol>  
 
-![](/img/tcgen.png)
+![](/img/20200702/CBSDD_NewProj.png)
 
 <ol start = "2">  
   <li>
@@ -54,7 +54,7 @@ Press Enter and wait for eclipse to finish downloading. Select all to download.(
 </ol>  
 
 ![](/img/newExample.png)
-![](/img/Example.png)
+![](/img/20200702/ExampleWizard.png)
 
 <ol start = "2">  
   <li>
@@ -71,7 +71,7 @@ This is a specification document describing the BoundedQueue class, which contai
   </li>
 </ol>
 
-![](/img/testoption.png)
+![](/img/20200702/MENU.png)
 
 <ol start = "4">  
   <li>
@@ -80,7 +80,7 @@ This is a specification document describing the BoundedQueue class, which contai
   </li>
 </ol>
 
-![](/img/generate.png)
+![](/img/20200702/output.png)
 
 ### About us
 
