@@ -15,7 +15,7 @@ Press Enter and wait for eclipse to finish downloading. Select all to download.(
 Press Enter and wait for eclipse to finish downloading. Select all to download.([Download Link](https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2019-12/))
 
   Step4.  Download and install TcgenSetup.exe, Select the folder where eclipse is installed.([Download Link](https://drive.google.com/open?id=1YQCuyN-neuGVMSnI0tkjJfIANZYZp-pr))
-![](/img/20200702/TcgenPluginSetUp.png)
+![Test](/img/20200702/TcgenPluginSetUp.png)
 
 ### II、How to use Tcgen Plugin
 
