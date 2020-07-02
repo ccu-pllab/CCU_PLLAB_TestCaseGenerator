@@ -67,7 +67,7 @@ This is a specification document describing the Gradeconverter class, which cont
 
 <ol start = "3">  
   <li>
-  Double-click the GradeConverter project and open the View of the class diagram, or open any related specification file. Such as GradeConverter.ocl or GradeConverter.uml. Then press the test button installed by the tcgen plugin in the eclipse navigation bar, select the "Method level black box test case" option.  
+  Double-click the GradeConverter project and open the View of the class diagram, or open any related specification file. Such as GradeConverter.ocl or GradeConverter.uml. Then press the test button installed by the tcgen plugin in the eclipse navigation bar, select the "Black Box Test Cases" option, and select the test coverage which you want to test with.  
   </li>
 </ol>
 
