@@ -86,7 +86,6 @@ This is a specification document describing the Gradeconverter class, which cont
 ### IV、Technical Documents
 [About Eclipse plug-in development](/document/軟測系統-eclipse外掛開發指南.pptx)
 
-[Java Document](/TCG-Overview/index.html)
 
 ### About us
 
