@@ -1,0 +1,74 @@
+group testcase-group;
+
+testcase(testCasePackage, classPackage, classList, class_name, method_name, ret_type, case_no, target_obj, arg_list, assert, sys_decl, sys_init, asc_init, sys_cleanup, return_void, is_constructor, exception_name) ::= <<
+package $testCasePackage$;
+
+import junit.framework.TestCase;
+
+$classList:importClasses()$
+$if(exception_name)$
+import $classPackage$.$exception_name$;
+$endif$
+
+
+public class Test$class_name$_$method_name$_c$case_no$ extends TestCase {
+	$sys_decl$
+
+	// assocation generation
+	$asc_init$
+
+	protected void setUp() throws Exception {
+		$sys_init$
+		buildAssociation();
+		super.setUp();
+	}
+
+	protected void tearDown() throws Exception {
+		$sys_cleanup$
+		super.tearDown();
+	}
+
+	public void test$method_name$() {
+$if(is_constructor)$
+		try {
+			new $method_name$($arg_list$);
+			fail();
+		$if(exception_name)$
+		} catch ($exception_name$ e) {
+			assertFalse(false);
+		} catch (Exception e) {
+			System.out.println(e);
+			fail();
+		}
+		$else$
+		} catch (Exception e) {
+			assertFalse(false);
+		}
+		$endif$
+$else$
+		try {
+			$target_obj$.$method_name$($arg_list$);
+			fail();
+		$if(exception_name)$
+		} catch ($exception_name$ e) {
+			assertFalse(false);
+			assertTrue($target_obj$.equals($target_obj$Post));
+		} catch (Exception e) {
+			fail();
+		}
+		$else$
+		} catch (Exception e) {
+			assertFalse(false);
+			assertTrue($target_obj$.equals($target_obj$Post));
+		}
+		$endif$
+$endif$
+	}
+}
+
+>>
+
+importClasses(class) ::= <<
+import $classPackage$.$class$;$\n$
+>>
+

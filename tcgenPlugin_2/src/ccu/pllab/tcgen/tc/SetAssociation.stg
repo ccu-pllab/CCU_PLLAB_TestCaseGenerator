@@ -1,0 +1,12 @@
+group setasc-group;
+
+setAsc(roleSetList) ::= <<
+private void buildAssociation()
+{
+	$roleSetList:roleSet()$
+}
+>>
+
+roleSet(role) ::= <<
+$role.obj1$.$role.roleGetter$().add($role.obj2$);$\n$
+>>

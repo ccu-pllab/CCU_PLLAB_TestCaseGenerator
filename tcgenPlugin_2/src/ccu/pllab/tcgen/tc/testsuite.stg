@@ -1,0 +1,24 @@
+group testsuite-group;
+
+testsuite(package_name, testsuite_name, testcases) ::= <<
+package $package_name$;
+
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+public class $testsuite_name$ {
+
+	public static Test suite() {
+		TestSuite suite = new TestSuite($testsuite_name$.class.getName());
+		
+		$testcases:addTestCase()$		
+
+		return suite;
+	}
+}
+
+>>
+
+addTestCase(testcase) ::= <<
+suite.addTestSuite($testcase$.class);$\n$
+>>

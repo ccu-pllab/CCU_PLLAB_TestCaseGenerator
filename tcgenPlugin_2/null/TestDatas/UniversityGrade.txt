@@ -1,0 +1,12 @@
+OBJ_PRE = [], ARG_PRE = [101],OBJ_POST = [],ARG_POST = [101], RETVAL = ["Exception"]
+OBJ_PRE = [], ARG_PRE = [-10],OBJ_POST = [],ARG_POST = [-10], RETVAL = ["Exception"]
+OBJ_PRE = [], ARG_PRE = [1],OBJ_POST = [],ARG_POST = [1], RETVAL = ["F"]
+OBJ_PRE = [], ARG_PRE = [0],OBJ_POST = [],ARG_POST = [0], RETVAL = ["F"]
+OBJ_PRE = [], ARG_PRE = [59],OBJ_POST = [],ARG_POST = [59], RETVAL = ["F"]
+OBJ_PRE = [], ARG_PRE = [61],OBJ_POST = [],ARG_POST = [61], RETVAL = ["D"]
+OBJ_PRE = [], ARG_PRE = [69],OBJ_POST = [],ARG_POST = [69], RETVAL = ["D"]
+OBJ_PRE = [], ARG_PRE = [60],OBJ_POST = [],ARG_POST = [60], RETVAL = ["D"]
+OBJ_PRE = [], ARG_PRE = [71],OBJ_POST = [],ARG_POST = [71], RETVAL = ["C"]
+OBJ_PRE = [], ARG_PRE = [79],OBJ_POST = [],ARG_POST = [79], RETVAL = ["C"]
+OBJ_PRE = [], ARG_PRE = [70],OBJ_POST = [],ARG_POST = [70], RETVAL = ["C"]
+

@@ -1,0 +1,236 @@
+group predicates;
+
+type_literal_node_body(node_identifier, type_name, result_name="Result") ::= <<
+<type_literal_node_call(node_identifier, type_name, result_name)> :-
+	<result_name> = "<type_name>".
+>>
+
+type_literal_node_call(node_identifier, type_name, result_name="Result") ::= <<
+n_<node_identifier>_type_literal_<type_name>(_, _, <result_name>)
+>>
+
+collection_literal_call(node_identifier, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_collection_literal(<instances_name>, <vars_name>, <result_name>)
+>>
+
+collection_literal_body(node_identifier, collection_parts, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<collection_literal_call(node_identifier, instances_name, vars_name, result_name)> :-
+	(foreach(Predicate, [<collection_parts; separator=", ">]), fromto([], In, Out, <result_name>), param(<instances_name>, <vars_name>) do
+		apply(Predicate, [<instances_name>, <vars_name>, Arg]),
+		append(In, Arg, Out)
+	).
+>>
+
+collection_range_call(node_identifier, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_collection_range(<instances_name>, <vars_name>, <result_name>)
+>>
+
+collection_range_body(node_identifier, first_predicate, last_predicate, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<collection_range_call(node_identifier, instances_name, vars_name, result_name)> :-
+	<first_predicate>(<instances_name>, <vars_name>, FV),
+	<last_predicate>(<instances_name>, <vars_name>, LV),
+	gen_seq_from_range(FV, LV, <result_name>).
+>>
+
+literal_call(node_identifier, value, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_constant(<instances_name>, <vars_name>, <result_name>)
+>>
+
+literal_body(node_identifier, value, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<literal_call(node_identifier, value, "_", "_", result_name)> :-
+	<result_name> = <value>.
+>>
+
+variable_node_body(node_identifier, variable_name, variable_index, state, vars_name="Vars", result_name="Result") ::= <<
+<variable_node_call(node_identifier, variable_name, state, variable_index, vars_name, result_name)> :-
+	ocl_variable(<vars_name>, <variable_index>, Variable),
+	variable_state("<state>", Variable, <result_name>).
+>>
+
+variable_node_call(node_identifier, variable_name, state, variable_index, vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_variable_<variable_name>(_, <vars_name>, <result_name>)
+>>
+
+
+if_node_body(node_identifier, condition, then_predicate, else_predicate, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<if_node_call(node_identifier, condition, then_predicate, else_predicate, instances_name, vars_name, result_name)> :-
+	ocl_if(<instances_name>, <vars_name>, <condition>, <then_predicate>, <else_predicate>, <result_name>).
+>>
+
+if_node_call(node_identifier, condition, then_predicate, else_predicate, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_if_body(<instances_name>, <vars_name>, <result_name>)
+>>
+
+constructor_call_body(node_identifier, state, class_name, method_name, vars_predicate, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<method_call_call(node_identifier, state, class_name, method_name, vars_predicate, instances_name, vars_name, result_name)> :-
+	index("<class_name>", ClassIndex),
+	<instances_name> = [PreInstances, PostInstances],
+	nth1(ClassIndex, PostInstances, ClassPostState),
+	nth1(ClassIndex, PreInstances, ClassPreState),
+	getOidList(ClassPostState, PostOids),
+	getOidList(ClassPreState, PreOids),
+	ocl_set_includes(PostOids, Var0Oid, 1),
+	ocl_set_includes(PreOids, Var0Oid, 0),
+	member(Var0State, ClassPostState),
+	getOid(Var0State, Var0Oid),
+	Var0 = [_, Var0State],
+	<result_name> = Var0,
+	(foreach(Predicate, [<vars_predicate; separator=", ">]), fromto([], In, Out, Args), param(<instances_name>, <vars_name>) do
+		apply(Predicate, [<instances_name>, <vars_name>, Arg]),
+		append(In, [Arg], Out)
+	),
+	append([Vars], Args, NewVars),
+	method_body_<class_name>_<method_name>(<instances_name>, NewVars, _).
+>>
+
+method_call_body(node_identifier, state, class_name, method_name, vars_predicate, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<method_call_call(node_identifier, state, class_name, method_name, vars_predicate, instances_name, vars_name, result_name)> :-
+	(foreach(Predicate, [<vars_predicate; separator=", ">]), fromto([], In, Out, NewVars), param(<instances_name>, <vars_name>) do
+		apply(Predicate, [<instances_name>, <vars_name>, Arg]),
+		append(In, [[Arg, Arg]], Out)
+	),
+	instance_state("precondition", <instances_name>, InstanceState),
+	method_body_<class_name>_<method_name>([InstanceState, InstanceState], NewVars, Result).
+>>
+
+method_call_call(node_identifier, state, class_name, method_name, vars_predicate, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_<class_name>_<method_name>(<instances_name>, <vars_name>, <result_name>)
+>>
+
+
+constraint_body(node_identifier, class_name, method_name, child_predicate, constraint_kind, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<constraint_call(node_identifier, class_name, method_name, child_predicate, constraint_kind, instances_name, vars_name, result_name)> :-
+	<child_predicate>.
+>>
+
+constraint_call(node_identifier, class_name, method_name, child_predicate, constraint_kind, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_<class_name>_<method_name>_<constraint_kind>(<instances_name>, <vars_name>, <result_name>)
+>>	
+
+	
+operation_ocl_collection_equals_body(node_identifier, predicate, predicate2, type, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<operation_ocl_collection_equals_call(node_identifier, predicate, predicate2, instances_name, vars_name, result_name)> :-
+	<predicate>(<instances_name>, <vars_name>, X),
+	<predicate2>(<instances_name>, <vars_name>, Y),
+	ocl_<type>_equals(X, Y, <result_name>).
+>>
+
+operation_ocl_collection_equals_call(node_identifier, predicate, predicate2, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_ocl_collection_equals(<instances_name>, <vars_name>, <result_name>)
+>>
+
+
+operation_ocl_primitive_unary_operation_body(node_identifier, predicate, type, name, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<operation_ocl_primitive_operation_call(node_identifier, type, name, instances_name, vars_name, result_name)> :-
+	<predicate>(<instances_name>, <vars_name>, X),
+	ocl_<type>_<name>(<instances_name>, <vars_name>, X, <result_name>).
+>>
+
+operation_ocl_primitive_binary_operation_body(node_identifier, predicate, predicate2, type, name, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<operation_ocl_primitive_operation_call(node_identifier, type, name, instances_name, vars_name, result_name)> :-
+	<predicate>(<instances_name>, <vars_name>, X),
+	<predicate2>(<instances_name>, <vars_name>, Y),
+	ocl_<type>_<name>(_, _, X, Y, <result_name>).
+>>
+
+operation_ocl_primitive_triary_operation_body(node_identifier, predicate, predicate2, predicate3, type, name, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<operation_ocl_primitive_operation_call(node_identifier, type, name, instances_name, vars_name, result_name)> :-
+	<predicate>(<instances_name>, <vars_name>, X),
+	<predicate2>(<instances_name>, <vars_name>, Y),
+	<predicate3>(<instances_name>, <vars_name>, Z),
+	ocl_<type>_<name>(_, _, X, Y, Z, <result_name>).
+>>
+
+dummy_collection_assign(node_identifier, predicate, predicate2, type, name, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<operation_ocl_collection_equals_call(node_identifier, type, name, instances_name, vars_name, result_name)> :-
+	<predicate>(<instances_name>, <vars_name>, X),
+	<predicate2>(<instances_name>, <vars_name>, Y),
+	X = Y,
+	<result_name> = 1.
+>>
+
+dummy_object_assign(node_identifier, predicate, predicate2, type, name, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<operation_ocl_object_relation_call(node_identifier, name, instances_name, vars_name, result_name)> :-
+	% object equals
+	<predicate>(<instances_name>, <vars_name>, X),
+	<predicate2>(<instances_name>, <vars_name>, Y),
+	X = Y,
+	<result_name> = 1.
+>>
+
+dummy_primitive_assign(node_identifier, predicate, predicate2, type, name, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<operation_ocl_primitive_operation_call(node_identifier, type, name, instances_name, vars_name, result_name)> :-
+	<predicate>(<instances_name>, <vars_name>, X),
+	<predicate2>(<instances_name>, <vars_name>, Y),
+	X = Y,
+	<result_name> = 1.
+>>
+
+operation_ocl_primitive_operation_call(node_identifier, type, name, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_ocl_<type>_<name>(<instances_name>, <vars_name>, <result_name>)
+>>
+
+
+operation_ocl_object_relation_body(node_identifier, predicate, predicate2, type1, type2, name, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<operation_ocl_object_relation_call(node_identifier, name, instances_name, vars_name, result_name)> :-
+	<predicate>(<instances_name>, <vars_name>, X),
+	<predicate2>(<instances_name>, <vars_name>, Y),	
+	ocl_object_<name>(<instances_name>, X, "<type1>", Y, "<type2>", <result_name>).
+>>
+
+operation_ocl_object_relation_call(node_identifier, name, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_ocl_object_<name>(<instances_name>, <vars_name>, <result_name>)
+>>
+
+
+
+navigate_call(node_identifier, object_getter, association_name, class_name, srcRole, dstRole, srcObjects, state, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_navigate_<class_name>_<dstRole>(<instances_name>, <vars_name>, <result_name>)
+>>
+
+navigate_body(node_identifier, object_getter, association_name, class_name, srcRole, dstRole, srcObjects, state, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<navigate_call(node_identifier, object_getter, association_name, class_name, srcRole, dstRole, srcObjects, state, instances_name, vars_name, result_name)> :-
+	<object_getter>(<instances_name>, <vars_name>, Object),
+	instance_state("<state>",  <instances_name>, InstancesState),
+	ocl_navigation(InstancesState, "<association_name>", "<srcRole>", "<dstRole>", Object, <result_name>).
+>>
+
+
+
+property_call(class_name, node_identifier, property_name, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_property_<class_name>_<property_name>(<instances_name>, <vars_name>, <result_name>)
+>>
+
+property_body(class_name, node_identifier, property_name, object_getter ,result_call , instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<property_call(class_name, node_identifier, property_name, instances_name, vars_name, result_name)> :-
+	<object_getter>(<instances_name>, <vars_name>, Object),
+	ocl_attributeCall(_, "<class_name>", "<property_name>", Object, <result_call>).
+>>
+
+
+
+ocl_collection_operation_body(node_identifier, operation_name, collection_predicate, object_predicate, collection_type, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<ocl_collection_operation_call(node_identifier, operation_name, collection_predicate, object_predicate, instances_name, vars_name, result_name)> :-
+	<collection_predicate>(<instances_name>, <vars_name>, Collection),
+	<if(object_predicate)>
+	<object_predicate>(<instances_name>, <vars_name>, Target),	
+	ocl_<collection_type>_<operation_name>(Collection, Target, <result_name>).
+	<else>
+	ocl_<collection_type>_<operation_name>(Collection, <result_name>).
+	<endif>
+>>
+
+
+ocl_collection_operation_call(node_identifier, operation_name, collection_predicate, object_predicate, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_ocl_collection_operation_<operation_name>(<instances_name>, <vars_name>, <result_name>)
+>>
+
+
+ocl_iterate_operation_call(node_identifier, collection_predicate, acc_init_predicate, acc_iteration_predicate, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+n_<node_identifier>_ocl_iterate(<instances_name>, <vars_name>, <result_name>)
+>>
+
+ocl_iterate_operation_body(node_identifier, collection_predicate, acc_init_predicate, acc_iteration_predicate, instances_name="Instances", vars_name="Vars", result_name="Result") ::= <<
+<ocl_iterate_operation_call(node_identifier, collection_predicate, acc_init_predicate, acc_iteration_predicate, instances_name, vars_name, result_name)> :-
+	ocl_iterate(<instances_name>, <vars_name>, <collection_predicate>, <acc_init_predicate>, <acc_iteration_predicate>, <result_name>).
+>>

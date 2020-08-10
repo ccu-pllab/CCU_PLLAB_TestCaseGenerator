@@ -1,0 +1,50 @@
+group builder-group;
+
+builder(classPackage, class, properties, testCasePackage) ::= <<
+package $testCasePackage$;
+
+import $classPackage$.$class$;
+
+public class Builder$class$
+{
+	$properties:builderVar()$
+	$properties:isSetVarDec()$
+	$properties:attrSetter()$
+	
+	public $class$ build() 
+	{
+	    $class$ bean = new $class$();
+	    $properties:apply()$ 
+	    return bean;
+	}
+}
+>>
+
+builderVar(property) ::= << 
+private $property.type$ $property.name$;
+>>
+
+isSetVarDec(property) ::= <<
+private boolean $isSetVarName(property)$ = false;$\n$
+>>
+
+isSetVarName(property) ::= <<
+$property.name$IsSet
+>>
+
+attrSetter(property) ::= <<
+public Builder$class$ $property.name$($property.type$ $property.name$) 
+{
+    this.$property.name$ = $property.name$;
+    $isSetVarName(property)$ = true;
+    return this;
+}
+>>
+
+apply(property) ::= <<
+if($isSetVarName(property)$)
+{
+	bean.$property.setter$($property.name$);
+}
+>>
+

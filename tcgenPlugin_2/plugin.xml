@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tcgenPlugin_2.commands.category"
+            name="Test driven">
+      </category>
+      <command
+            categoryId="tcgenPlugin_2.commands.category"
+            name="MCC Coverage"
+            id="tcgenPlugin_2.commands.BlackBoxCommand.MCC">
+            <commandParameter
+         		id="com.eclipse-tips.commands.CoverageCriteriaParameter"
+         		name="MCC">
+  	 		</commandParameter>
+      </command>
+       <command
+            categoryId="tcgenPlugin_2.commands.category"
+            name="DCC Coverage"
+            id="tcgenPlugin_2.commands.BlackBoxCommand.DCC">
+            <commandParameter
+         		id="com.eclipse-tips.commands.CoverageCriteriaParameter"
+         		name="DCC">
+  	 		</commandParameter>
+      </command>
+      <command
+            categoryId="tcgenPlugin_2.commands.category"
+            name="DC Coverage"
+            id="tcgenPlugin_2.commands.BlackBoxCommand.DC">
+            <commandParameter
+         		id="com.eclipse-tips.commands.CoverageCriteriaParameter"
+         		name="DC">
+  	 		</commandParameter>
+      </command>
+      <command
+            categoryId="tcgenPlugin_2.commands.category"
+            id="tcgenPlugin_2.commands.WhiteBoxCommand"
+            name="White Box Test Cases">
+      </command>
+      <command
+            categoryId="tcgenPlugin_2.commands.category"
+            id="tcgenPlugin_2.commands.ClassLevelCommand"
+            name="Class Level Test Cases">
+      </command>
+      <command
+            categoryId="tcgenPlugin_2.commands.category"
+            id="tcgenPlugin_2.commands.NewSpecCommand"
+            name="New Specification">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="tcgenplugin_2.handlers.BlackBoxHandler"
+            commandId="tcgenPlugin_2.commands.BlackBoxCommand.MCC">
+      </handler>
+      <handler
+            class="tcgenplugin_2.handlers.BlackBoxHandler"
+            commandId="tcgenPlugin_2.commands.BlackBoxCommand.DCC">
+      </handler>
+      <handler
+            class="tcgenplugin_2.handlers.BlackBoxHandler"
+            commandId="tcgenPlugin_2.commands.BlackBoxCommand.DC">
+      </handler>
+      <handler
+            class="tcgenplugin_2.handlers.WhiteBoxHandler"
+            commandId="tcgenPlugin_2.commands.WhiteBoxCommand">
+      </handler>
+      <handler
+            class="tcgenplugin_2.handlers.ClassLevelHandler"
+            commandId="tcgenPlugin_2.commands.ClassLevelCommand">
+      </handler>
+      <handler
+            class="tcgenplugin_2.handlers.NewSpecHandler"
+            commandId="tcgenPlugin_2.commands.NewSpecCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="tcgenPlugin_2.commands.BlackBoxCommand.MCC"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="">
+      </key>
+      <key
+            commandId="tcgenPlugin_2.commands.BlackBoxCommand.DCC"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="">
+      </key>
+      <key
+            commandId="tcgenPlugin_2.commands.BlackBoxCommand.DC"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="">
+      </key>
+      <key
+            commandId="tcgenPlugin_2.commands.WhiteBoxCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+7">
+      </key>
+      <key
+            commandId="tcgenPlugin_2.commands.ClassLevelCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+8">
+      </key>
+      <key
+            commandId="tcgenPlugin_2.commands.NewSpecCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+5">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="tcgenPlugin_2.menus.sampleMenu"
+               label="Test"
+               mnemonic="M">
+            <command
+                  commandId="tcgenPlugin_2.commands.NewSpecCommand"
+                  id="tcgenPlugin_2.menus.NewSpecCommand"
+                  mnemonic="S">                            
+            </command>
+             <separator
+                  name="separatorForTest1"
+                  visible="true">
+            </separator>   
+            
+            <command
+                  commandId="tcgenPlugin_2.commands.WhiteBoxCommand"
+                  id="tcgenPlugin_2.menus.WhiteBoxCommand"
+                  mnemonic="S">
+            </command>
+            <command
+                  commandId="tcgenPlugin_2.commands.ClassLevelCommand"
+                  id="tcgenPlugin_2.menus.ClassLevelCommand"
+                  mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="tcgenPlugin_2.toolbars.sampleToolbar">
+            <command
+                  id="tcgenPlugin_2.toolbars.sampleCommand"
+                  commandId="tcgenPlugin_2.commands.sampleCommand"
+                  icon="icons/sample.png"
+                  tooltip="Test">
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            	locationURI="menu:tcgenPlugin_2.menus.sampleMenu?after=separatorForTest1"> 
+            	<menu
+              		id="tcgenPlugin_2.menus.sample2Menu"
+              		label="Black Box Test Cases"
+              		mnemonic="M">
+              		<command
+                 		commandId="tcgenPlugin_2.commands.BlackBoxCommand.DC"
+                 		id="tcgenPlugin_2.menus.BlackBoxCommand.DC"
+                  		mnemonic="S">      
+                  		        		
+            		</command>
+              		<command
+                 		commandId="tcgenPlugin_2.commands.BlackBoxCommand.DCC"
+                 		id="tcgenPlugin_2.menus.BlackBoxCommand.DCC"
+                  		mnemonic="S">      
+                  		  		
+            		</command>
+              		<command
+                 		commandId="tcgenPlugin_2.commands.BlackBoxCommand.MCC"
+                 		id="tcgenPlugin_2.menus.BlackBoxCommand.MCC"
+                  		mnemonic="S">                      		         		
+            		</command>
+            		
+            		
+              	</menu>
+            </menuContribution>
+   </extension>
+   
+</plugin>
