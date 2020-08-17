@@ -14,7 +14,7 @@ Press Enter and wait for eclipse to finish downloading. Select all to download.(
   Step3.  Download and install Papyrus，From the eclipse navigation: Help -> Install New Software... -> Work with, Paste download URL.
 Press Enter and wait for eclipse to finish downloading. Select all to download.([Download Link](https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2019-12/))
 
-  Step4.  Download and install TcgenSetup.exe, Select the folder where eclipse is installed.([Download Link](https://drive.google.com/file/d/1Kz8oVEnTpEf9PXzQNp71TkcyTJu9PSzE/view?usp=sharing))
+  Step4.  Download and install TcgenSetup.exe, Select the folder where eclipse is installed.[Download Link](/TcgenSetup_1.5.3v202008171759.exe)
   
 ![](/img/20200702/TcgenPluginSetUp.png)
 
