@@ -83,7 +83,7 @@ This is a specification document describing the Gradeconverter class, which cont
 
 ![](/img/20200702/output.PNG)
 
-### IV、Technical Documents
+### IV、Documents
 [About Eclipse plug-in development](/document/軟測系統-eclipse外掛開發指南.pptx)
 
 
